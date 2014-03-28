@@ -1,6 +1,7 @@
 ﻿/*
  * Array Exercises:
  * 1-7 - 28.03.2014
+ * Requies import of table aa through https://github.com/aerobless/Database2/blob/master/Postgres/srcEx06/01_preparation.sql
 */
 
 --1. Select all data from table aa
@@ -33,6 +34,7 @@ SELECT unnest(b) from aa where a=1;
 /*
  * Dictionaries/EAV Exercises:
  * 1-5 - 28.03.2014
+ * Requies import of http://wiki.hsr.ch/Datenbanken/files/gisw04.zip
 */
 --List all tables (NAE - Not An Exercise)
 select * from information_schema.tables
