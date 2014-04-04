@@ -22,3 +22,20 @@ ORDER BY 1;
 
 -- 2.3 - Write a query that selects all underlings of chef (Steiner 1010)
 SELECT persnr, name, chef FROM angestellter WHERE chef=1001 ORDER BY 1;
+
+-- 3.0 - Trees and stuff
+/* Load db from: http://wiki.hsr.ch/Datenbanken/files/W05_ltree.zip */
+
+-- 3.1 - Select all children of the node computing
+WITH RECURSIVE temptab AS (
+	SELECT id, name
+	FROM skills
+	WHERE id = 2
+UNION ALL
+	SELECT s.id, s.name
+	FROM temptab JOIN skills s ON s.parent_fk = temptab.id
+)
+
+SELECT * FROM temptab WHERE id != 2
+ORDER BY id;
+
