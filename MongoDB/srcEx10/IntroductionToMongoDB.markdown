@@ -107,3 +107,13 @@ We're unable to find the unicorn named "Roo**dles".
 	db.unicorns.update({"gender": "f", $or: [{"loves":"apple"}, {"loves":"carrot"}]}, {$push: {loves: "tomato"}}, { multi: true })
 *We have to specify {multi: true}, if we don't it will only update the first unicorn it finds*
 
+##Exercise 4
+For exercises we have to again import new data. See the link in exercise 2.
+
+**1. Create a query that returns the manager of "moneo"**
+
+	db.employees.findOne({_id: db.employees.findOne({name:"Moneo"}).manager})
+	
+**2. Create a query to find the person whose mother is called "Chani"**
+
+	db.employees.find({"family.mother": "Chani"})
