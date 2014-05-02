@@ -54,6 +54,21 @@ These commands need to be entered into the mongo console unless specified otherw
 	mongoimport ~/test/unicornCollection
 *It has now re-imported the collection, but under a different name. It uses the filename as name for the collection. I assume there's a argument that can be used to specify the collection name on import*
 
+##Exercise 02
+For this exercise we first need to import a bunch of data and make a new db called ex02. See http://wiki.hsr.ch/Datenbanken/Dbs2FS14UebW10 for more info.
 
+**1. Find the unicorn with the name "Aurora"**
 
- 
+	db.unicorns.find({"name": "Aurora"})
+
+**2. Find all females that like apples**
+	
+	db.unicorns.find({"gender":"f", "loves":"apple"})
+	
+**3. Find all females that like apples and carrots**
+	
+	db.unicorns.find({gender:"f",loves:{ $all:["apple","carrot"]}})
+	
+**4. Find all females that like apples or carrots**
+
+	db.unicorns.find({"gender": "f", $or: [{"loves":"apple"}, {"loves":"carrot"}]})
