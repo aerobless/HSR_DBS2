@@ -16,5 +16,44 @@
 	#Start Mongo Console
 	mongo
 	
-##Exercises
+##Exercise 01
+These commands need to be entered into the mongo console unless specified otherwise. These exercises are based on the [little-monogdb-book](https://github.com/karlseguin/the-little-mongodb-book/blob/master/en/mongodb.markdown).
 
+**1. Create a database named ex01**
+
+	use ex01
+*Doesn't actually create the db until you store something in it.*
+
+**2. Create a collection with one element**
+
+	db.unicorns.insert({name: 'Aurora',
+    gender: 'f', weight: 450})
+*Creates a collection called unicorns with one unicorn in it.*
+
+**3. Get alle elements inside the collection**
+	
+	db.unicorns.find()
+	
+**4. Add another element to the collection with different properties**
+
+	db.unicorns.insert({name: 'Leto', gender: 'm', home: 'Arrakeen', worm:false})
+*Apparently it doesn't matter what properties the elements have that we insert into a collection*
+
+**5. Export the collection into a file**
+
+	mongoexport --db ex1 -collection unicorns --out ~/test/unicornCollection
+*This needs to be executed in bash and not in the mongo console.*
+
+**6. Delete the unicorns collection**
+
+	db.unicorns.remove({})
+*Using just unicorns.remove() doesn't work for some reason even though it says so in the exercise.*
+
+**7. Re-Import the unicorn collection from the file**
+
+	mongoimport ~/test/unicornCollection
+*It has now re-imported the collection, but under a different name. It uses the filename as name for the collection. I assume there's a argument that can be used to specify the collection name on import*
+
+
+
+ 
