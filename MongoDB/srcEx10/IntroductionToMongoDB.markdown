@@ -72,3 +72,15 @@ For this exercise we first need to import a bunch of data and make a new db call
 **4. Find all females that like apples or carrots**
 
 	db.unicorns.find({"gender": "f", $or: [{"loves":"apple"}, {"loves":"carrot"}]})
+*To make a or-statement: "$or: [{someProperties: "whatever"}, {someOtherProp: "whatever"}]"*
+	
+**5. Find everyone with a weight between 600 and 900**
+
+	db.unicorns.find({$and: [{weight: {$gte: 600}}, {weight: {$lte: 900}}]})
+*gte = greater then or equal, lte = less then or equal*
+
+**6. Return only the names and gender of all females the like carrots and apples**
+
+	db.unicorns.find({gender:"f",loves:{ $all:["apple","carrot"]}}, {"name":1, "gender":1})
+*Apparently we need to specify that there is a value assign to "name" by adding :1. ("name":"whatever" works too)*
+
