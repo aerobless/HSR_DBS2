@@ -84,3 +84,26 @@ For this exercise we first need to import a bunch of data and make a new db call
 	db.unicorns.find({gender:"f",loves:{ $all:["apple","carrot"]}}, {"name":1, "gender":1})
 *Apparently we need to specify that there is a value assign to "name" by adding :1. ("name":"whatever" works too)*
 
+##Exercise 3
+**1. Run the command below**
+
+	db.unicorns.update({name: 'Roooooodles'}, {weight: 590})
+
+**2. What changed?**  
+We're unable to find the unicorn named "Roo**dles".
+
+**3. What's the correct command to "update" a value?**
+
+	db.unicorns.update({name: 'Solnara'},{$set: {weight: 590}})
+*Though I'm still not entirely sure what happend to our Ro..odles.. For all I know it has disappear from the face of the earth lol.*
+
+**4. Add "suger" to the things the unicorn "Aurora" likes**
+
+	db.unicorns.update({name: 'Aurora'},{$push: {loves: "suger"}})
+*So we can add things to an array with $push*
+
+**5. Add "tomato" to the things all female unicorns that like carrots and apples like.**
+
+	db.unicorns.update({"gender": "f", $or: [{"loves":"apple"}, {"loves":"carrot"}]}, {$push: {loves: "tomato"}}, { multi: true })
+*We have to specify {multi: true}, if we don't it will only update the first unicorn it finds*
+
